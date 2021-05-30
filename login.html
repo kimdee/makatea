@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="images/MAKATEA (1).png">
+  <title> MAKATEA </title>
+  
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href ="css/login.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/7c9f01f1a5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+  <title>Login</title>
+</head>
+<body>
+  <!-- LOGIN  -->
+  <img src="imagelogin/wELCOME TO.png" class="background">
+    <div class="loginbox">
+      <form id="loginForm" name="loginForm" method="POST">
+        <img src="imagelogin/makatealogo.png" class="avatar">
+        <h1 class="login">Login here</h1>
+        <div class="alert alert-danger alert-dismissible" id="error" style="display:none;">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>1
+        </div>
+
+        <p>Username</p>
+        <input type="text" name="customerUserNameLogin" placeholder="Enter Username" id="user-username">
+
+        <p>Password</p>
+        <input type="password" name="customerPasswordLogin" placeholder="Enter password" id="user-password">
+
+        <input type="button" name="save" class="btn btn-success" value="Login" id="btn-login">
+      </form>
+
+      <label id = "signUp" style = "font-size: 13px;">Dont you have an account? 
+        <a class="btn btn-link" style="font-size: 15px; color: blue;"data-bs-toggle="modal" data-bs-target="#modal-signup">Sign Up</a>
+      </label>
+    </div>
+  <!-- END LOGIN -->
+
+  <div class="modal fade" id="modal-signup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form id="add-customer" method="POST">
+            <div class="row g-1">
+                <div class="col-6">
+                  <input type="text" name="customerFirstName" placeholder="First Name" class="form-control" id="customerFirstName"> <br>
+                </div>
+
+                <div class="col-6">
+                  <input type="text" name="customerLastName" placeholder="Last Name" class="form-control" id="customerLastName"> <br>
+                </div>
+
+                <div class="col-12">
+                  <input type="number" name="customerContact" placeholder="Mobile Number" class="form-control" id = "customerContact">  <br>
+                </div>
+
+                
+                <div class="col-12">
+                  <input type="text" name="customerAddress" placeholder="Address" class="form-control" id="customerAddress">  <br>
+                </div>
+
+                <div class="col-12">
+                  <input type="text" name="customerUserName" placeholder="UserName" class="form-control" id = "customerUserName"> <br>
+                </div>
+                
+                <div class="col-12">
+                  <input type="text" name="customerPassword" placeholder="Password" class="form-control" id = "customerPassword"> <br>
+                </div>
+
+                <div class="col-12">
+                  <input type="text" name="customerPassword" placeholder="Confirm Password" class="form-control" id="customerPassword" h> 
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <input type="hidden" value="1" name="type" id="type">
+          <button type="button" class="btn btn-primary" id = "btn-signup">Submit</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+ <!-- JQUERY  -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+
+   // FUNCTION ADD OR SAVE DATA
+   $('#btn-signup').on('click', function() {
+        $("#btn-signup").attr("disabled", "disabled");
+        var customerFirstName = $('#customerFirstName').val();
+        var customerLastName = $('#customerLastName').val();
+        var customerContact = $('#customerContact').val();
+        var customerAddress = $('#customerAddress').val();
+        var customerUserName = $('#customerUserName').val();
+        var customerPassword = $('#customerPassword').val();
+        var type = $('#type').val();
+        if( customerFirstName!="" && customerLastName!="" && customerContact!=""
+           && customerAddress!=""  && customerUserName!=""&& customerPassword!="" ){
+            $.ajax({
+              url: "php/customer.php",
+              type: "POST",
+              data: {
+                customerFirstName: customerFirstName,
+                customerLastName: customerLastName,
+                customerContact: customerContact,
+                customerAddress: customerAddress,
+                customerUserName: customerUserName,
+                customerPassword: customerPassword,
+                type: type
+              },
+              cache: false,
+              success: function(dataResult){
+                var dataResult = JSON.parse(dataResult);
+                if(dataResult.statusCode==200){
+                  $("#btn-signup").removeAttr("disabled");
+                  $('#add-customer').find('input:text').val('');
+                  location.reload();
+                  // $("#success").show();
+                  // $('#success').html('Data added successfully !');
+                              
+                }
+                else if(dataResult.statusCode==201){
+                  alert("Error occured !");
+                }
+                
+              }
+            });
+        } else {
+          alert('Please fill all the field !');
+        }
+    });
+
+    // LOGIN CUSTOMER
+    $('#btn-login').on('click', function() {
+		  var customerUserNameLogin = $('#user-username').val();
+		  var customerPasswordLogin = $('#user-password').val();
+
+      if(customerUserNameLogin!="" && customerPasswordLogin!="" ){
+        $.ajax({
+          url: "php/customer.php",
+          type: "POST",
+          data: {        
+            type: 4,   
+            customerUserName: customerUserNameLogin,
+            customerPassword: customerPasswordLogin
+          },
+          cache: false,
+          success: function(dataResult) {
+            var dataResult = JSON.parse(dataResult);
+            if(dataResult.statusCode==200) {
+              location.href = "ordering-module.html";
+            }
+            else if(dataResult.statusCode==201) {
+              $("#error").show();
+              $('#error').html('Invalid Email or Password!');
+            }
+            
+          }
+        });
+      }  else {
+        alert('Please fill all the field !');
+      }
+	  });
+
+    // LOGIN ADMIN
+    $('#btn-login').on('click', function() {
+		  var accountEmail    = $('#user-username').val();
+		  var accountPassword = $('#user-password').val();
+
+      if(accountEmail!="" && accountPassword!="" ){
+        $.ajax({
+          url: "php/accounts.php",
+          type: "POST",
+          data: {        
+            type: 2,   
+            accountEmail: accountEmail,
+            accountPassword: accountPassword
+          },
+          cache: false,
+          success: function(dataResult) {
+            var dataResult = JSON.parse(dataResult);
+            if(dataResult.statusCode==200) {
+              location.href = "Order.html";
+            } else if (dataResult.statusCode==201) {
+              $("#error").show();
+              // $('#error').html('Invalid Email or Password!');
+            }
+            
+          }
+        });
+      }  else {
+        alert('Please fill all the field !');
+      }
+	  });
+    
+  }); 
+
+  </script>
+
+
+</body>
+</html>

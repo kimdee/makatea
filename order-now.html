@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="images/MAKATEA (1).png">
+    <link rel="stylesheet" href ="css/ordering-module.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7c9f01f1a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+
+    <title>MAKATEA</title>
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.0.2" rel="stylesheet" />
+</head>
+<body>
+<div class="header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
+            <div class="container">
+                <div class="logo">
+                    <img src="images/MAKATEA (1).png" class="logo" width="125px">
+                </div>
+                 
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav navbar-nav-hover ms-auto">
+                        <li> <a href="ordering-module.html">Home</a></li>
+                        <li> <a href="cart.html">My Order</a></li>
+                        <li> <a href="#contact">Contact</a></li>
+                        <li> <a href="login.html">Logout</a></li>
+                        <i class="fas fa-shopping-cart" style=></i>
+                        <i class="fas fa-bars" onclick="menutoggle()" style="margin-left: 15px;"></i>    
+                    </ul>
+                </div>
+            </div>
+        </nav>       
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header">
+            <nav class="navbar navbar-expand-lg navbar-light z-index-3 py-3">
+                <div class="container">
+                    
+                    <a class="navbar-brand" href="cart.html" rel="tooltip" title="Designed and Coded by Creative Tim" style="font-size: 25px;">
+                        <i class="fas fa-arrow-circle-left"></i>  My Cart
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                        <tr>
+                            <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">#</th>
+                            <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Product</th>
+                            <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                            <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2-7 ps-2">Price</th>
+                            <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2-7 ps-2 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-now-view">  
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!----------------------------------- MODAL ADD PRODUCT ----------------------------------->
+<div class="modal fade" id="modal-add-cart" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+      <div class="modal-content">
+        <div class="modal-body p-0">
+          <div class="card card-plain">
+            <div class="card-header pb-0 text-right">
+                <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times" style="color: red;"></i>
+                </button>
+            </div>
+
+            <div class="card-body">
+                <form id="add-product" method="POST">
+                <div class="row g-1">
+                    <div class="col-md-6">
+                        <a href="javascript:;" class="d-block">
+                            <img src="images/product-1.jpg" class="img-fluid border-radius-sm">
+                          </a>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="row g-1">
+                            <input type="hidden" id="productID">
+
+                            <div class="col-12"> 
+                                Name: <h5 id="productName"></h5>
+                            </div>
+
+                            <div class="col-12"> 
+                                Description: <h5 id="productDescription"></h5> 
+                            </div>
+
+                            <div class="col-12"> 
+                                Price:  <input type="number" name="" id="productPrice" class="form-control" readonly> 
+                            </div>
+
+                            <div class="col-12"> 
+                                Quantity: <input type="number" name="orderQuantity" id="orderQuantity" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <input type="hidden" value="1" name="type" id="type">
+                    <a role="button" class="btn btn-round bg-gradient-info btn-lg w-100 mt-4 mb-0" id="btn-save">ADD</a>
+                </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<!------------------------------------------------ END ADD MODAL PRODUCT  ------------------------------------>
+
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="assets/js/plugins/chartjs.min.js"></script>
+    <script src="assets/js/plugins/Chart.extension.js"></script>
+    <script>
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+            label: "Sales",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            backgroundColor: "#fff",
+            data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+            maxBarThickness: 6
+            }, ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+            display: false,
+            },
+            tooltips: {
+            enabled: true,
+            mode: "index",
+            intersect: false,
+            },
+            scales: {
+            yAxes: [{
+                gridLines: {
+                display: false,
+                },
+                ticks: {
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 0,
+                fontSize: 14,
+                lineHeight: 3,
+                fontColor: "#fff",
+                fontStyle: 'normal',
+                fontFamily: "Open Sans",
+                },
+            }, ],
+            xAxes: [{
+                gridLines: {
+                display: false,
+                },
+                ticks: {
+                display: false,
+                padding: 20,
+                },
+            }, ],
+            },
+        },
+        });
+
+        var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+
+        new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Mobile apps",
+                tension: 0.4,
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#cb0c9f",
+                borderWidth: 3,
+                backgroundColor: gradientStroke1,
+                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                maxBarThickness: 6
+
+            },
+            {
+                label: "Websites",
+                tension: 0.4,
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#3A416F",
+                borderWidth: 3,
+                backgroundColor: gradientStroke2,
+                data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+                maxBarThickness: 6
+
+            },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+            display: false,
+            },
+            tooltips: {
+            enabled: true,
+            mode: "index",
+            intersect: false,
+            },
+            scales: {
+            yAxes: [{
+                gridLines: {
+                borderDash: [2],
+                borderDashOffset: [2],
+                color: '#dee2e6',
+                zeroLineColor: '#dee2e6',
+                zeroLineWidth: 1,
+                zeroLineBorderDash: [2],
+                drawBorder: false,
+                },
+                ticks: {
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 10,
+                fontSize: 11,
+                fontColor: '#adb5bd',
+                lineHeight: 3,
+                fontStyle: 'normal',
+                fontFamily: "Open Sans",
+                },
+            }, ],
+            xAxes: [{
+                gridLines: {
+                zeroLineColor: 'rgba(0,0,0,0)',
+                display: false,
+                },
+                ticks: {
+                padding: 10,
+                fontSize: 11,
+                fontColor: '#adb5bd',
+                lineHeight: 3,
+                fontStyle: 'normal',
+                fontFamily: "Open Sans",
+                },
+            }, ],
+            },
+        },
+        });
+    </script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+    <!-- JQUERY  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script>
+        // VIEW DATA
+        $.ajax({
+            url: "php/order-now-view.php",
+            type: "POST",
+            cache: false,
+            success: function(data){
+                // alert(data);
+                $('#order-now-view').html(data); 
+            }
+        });
+
+        //ADD CART
+        $(document).on('click','#btn-add',function(e) {
+            var productID = $(this).attr("data-productID");
+            var productName = $(this).attr("data-productName");
+            var productPrice = $(this).attr("data-productPrice");
+            var productDescription = $(this).attr("data-productDescription");
+
+            $('#productID').val(productID)
+            $('#productName').append(productName)
+            $('#productPrice').val(productPrice)
+            $('#productDescription').append(productDescription)
+        });
+
+        // FUNCTION ADD OR SAVE DATA
+        $('#btn-save').on('click', function() {
+            $("#btn-save").attr("disabled", "disabled");
+            var productID     = $('#productID').val();
+            var orderQuantity   = $('#orderQuantity').val();
+            var orderTotalAmount   = $('#productPrice').val();
+            
+            if( orderQuantity!="") { 
+                $.ajax({
+                    url: "php/order-now.php",
+                    type: "POST",
+                    data: {
+                        productID: productID,
+                        orderQuantity: orderQuantity,
+                        orderTotalAmount: orderTotalAmount,
+                        type: 1
+                    },
+                    cache: false,
+                    success: function(dataResult){
+                    var dataResult = JSON.parse(dataResult);
+                    if(dataResult.statusCode==200){
+                       location.reload();
+                    } else if(dataResult.statusCode==201) {
+                        alert("Error occured !");
+                    }
+                    }
+                });
+            } else {
+                alert('Error!');
+            }
+        });
+    </script>
+</body>
+</html>

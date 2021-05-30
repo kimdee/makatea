@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/png" href="images/MAKATEA (1).png">
+    <link rel="stylesheet" href ="css/ordering-module.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/7c9f01f1a5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+
+    <title>Makatea</title>
+
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+    <!-- Nucleo Icons -->
+    <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
+    <!-- CSS Files -->
+    <link id="pagestyle" href="assets/css/soft-ui-dashboard.css?v=1.0.2" rel="stylesheet" />
+</head>
+<body>
+<div class="header">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg top-0 z-index-3 w-100 shadow-none my-3  navbar-transparent ">
+            <div class="container">
+                <div class="logo">
+                    <img src="images/MAKATEA (1).png" class="logo" width="125px">
+                </div>
+                 
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navigation">
+                    <ul class="navbar-nav navbar-nav-hover ms-auto">
+                        <li> <a href="ordering-module.html">Home</a></li>
+                        <li> <a href="cart.html">My Order</a></li>
+                        <li> <a href="#contact">Contact</a></li>
+                        <li> <a href="login.html">Logout</a></li>
+                        <i class="fas fa-shopping-cart" style=></i>
+                        <i class="fas fa-bars" onclick="menutoggle()" style="margin-left: 15px;"></i>    
+                    </ul>
+                </div>
+            </div>
+        </nav>       
+    </div>
+</div>
+
+<div class="container py-4">
+    <div class="card">
+        <div class="card-header">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white z-index-3 py-3">
+                <div class="container">
+                    <a class="navbar-brand" href="" rel="tooltip" title="Designed and Coded by Creative Tim" data-placement="bottom" target="_blank">
+                        My Cart
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navigation">
+                        <ul class="navbar-nav navbar-nav-hover ms-auto">
+                            <div class="row">  
+                                <div class="col-auto">
+                                    <div class="bg-white border-radius-lg d-flex me-2">
+                                        <a href="order-now.html" role="button" class="btn bg-gradient-primary my-1 me-1">Order Now</a>
+                                        <!-- <button class="btn bg-gradient-primary my-1 me-1">Order Now</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table align-items-center mb-0" >
+                    <thead>
+                        <tr>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">#</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Product</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2">Quantity</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2-7 ps-2">Price</th>
+                        <th class="text-uppercase text-dark text-xxs font-weight-bolder opacity-7 ps-2-7 ps-2 text-right">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-view">  
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DELETE DATA -->
+<div class="modal" tabindex="-1" id="modal-delete-cart">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form>
+                <div class="modal-body">
+                    <input type="hidden" name="orderID" id="orderIDdel">
+                    <p>Are you sure you want to delete?</p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="delete-order">Yes</button>
+                    <button type="button" class="btn btn-danger">No</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- DELETE DATA -->
+
+    <!--   Core JS Files   -->
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/core/bootstrap.min.js"></script>
+    <script src="assets/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="assets/js/plugins/chartjs.min.js"></script>
+    <script src="assets/js/plugins/Chart.extension.js"></script>
+    <script>
+        var ctx = document.getElementById("chart-bars").getContext("2d");
+
+        new Chart(ctx, {
+        type: "bar",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+            label: "Sales",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            backgroundColor: "#fff",
+            data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+            maxBarThickness: 6
+            }, ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+            display: false,
+            },
+            tooltips: {
+            enabled: true,
+            mode: "index",
+            intersect: false,
+            },
+            scales: {
+            yAxes: [{
+                gridLines: {
+                display: false,
+                },
+                ticks: {
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 0,
+                fontSize: 14,
+                lineHeight: 3,
+                fontColor: "#fff",
+                fontStyle: 'normal',
+                fontFamily: "Open Sans",
+                },
+            }, ],
+            xAxes: [{
+                gridLines: {
+                display: false,
+                },
+                ticks: {
+                display: false,
+                padding: 20,
+                },
+            }, ],
+            },
+        },
+        });
+
+        var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+        var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+        gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+        var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+        gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+        gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+        gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+
+        new Chart(ctx2, {
+        type: "line",
+        data: {
+            labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [{
+                label: "Mobile apps",
+                tension: 0.4,
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#cb0c9f",
+                borderWidth: 3,
+                backgroundColor: gradientStroke1,
+                data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+                maxBarThickness: 6
+
+            },
+            {
+                label: "Websites",
+                tension: 0.4,
+                borderWidth: 0,
+                pointRadius: 0,
+                borderColor: "#3A416F",
+                borderWidth: 3,
+                backgroundColor: gradientStroke2,
+                data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+                maxBarThickness: 6
+
+            },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+            display: false,
+            },
+            tooltips: {
+            enabled: true,
+            mode: "index",
+            intersect: false,
+            },
+            scales: {
+            yAxes: [{
+                gridLines: {
+                borderDash: [2],
+                borderDashOffset: [2],
+                color: '#dee2e6',
+                zeroLineColor: '#dee2e6',
+                zeroLineWidth: 1,
+                zeroLineBorderDash: [2],
+                drawBorder: false,
+                },
+                ticks: {
+                suggestedMin: 0,
+                suggestedMax: 500,
+                beginAtZero: true,
+                padding: 10,
+                fontSize: 11,
+                fontColor: '#adb5bd',
+                lineHeight: 3,
+                fontStyle: 'normal',
+                fontFamily: "Open Sans",
+                },
+            }, ],
+            xAxes: [{
+                gridLines: {
+                zeroLineColor: 'rgba(0,0,0,0)',
+                display: false,
+                },
+                ticks: {
+                padding: 10,
+                fontSize: 11,
+                fontColor: '#adb5bd',
+                lineHeight: 3,
+                fontStyle: 'normal',
+                fontFamily: "Open Sans",
+                },
+            }, ],
+            },
+        },
+        });
+    </script>
+    <script>
+        var win = navigator.platform.indexOf('Win') > -1;
+        if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+        }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="assets/js/soft-ui-dashboard.min.js?v=1.0.2"></script>
+
+    <!-- JQUERY  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <script>
+        // VIEW DATA
+        $.ajax({
+                url: "php/cart-view.php",
+                type: "POST",
+                cache: false,
+                success: function(data){
+                    $('#cart-view').html(data); 
+                }
+            });
+
+        $(document).ready(function() {
+            // EDIT DATA
+            $(document).on('click','#btn-edit',function(e) {
+            var productID = $(this).attr("data-productID");
+            var productName = $(this).attr("data-productName");
+            var productPrice = $(this).attr("data-productPrice");
+            var productDescription = $(this).attr("data-productDescription");
+            
+            $('#productID').val(productID);
+            $('#productNameEdit').val(productName);
+            $('#productPriceEdit').val(productPrice);
+            $('#productDescriptionEdit').val(productDescription);
+            });
+
+            $(document).on("click", "#btn-update", function() { 
+            var data = $("#edit-product").serialize();
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "php/item.php",
+                success: function(dataResult){
+                var dataResult = JSON.parse(dataResult);
+                if(dataResult.statusCode==200){
+                    $('#modal-edit-product').modal().hide();
+                    alert('Data updated successfully !');
+                    location.reload();					
+                }  else if(dataResult.statusCode==201){
+                    alert("Error occured !");
+                }
+                }
+            });
+            });
+
+            // DELETE
+            $(document).on('click','#btn-delete',function(e) {
+            var orderID = $(this).attr("data-orderID");
+            
+            $('#orderIDdel').val(orderID);
+            });
+
+            $(document).on("click", "#delete-order", function() { 
+                $.ajax({
+                    url: "php/cart.php",
+                    type: "POST",
+                    cache: false,
+                    data:{
+                    type: 3,
+                    orderID: $("#orderIDdel").val()
+                    },
+                    success: function(dataResult){
+                        $('#modal-delete-product').modal('hide');
+                        $("#"+dataResult).remove();
+                        location.reload();
+                    }
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>

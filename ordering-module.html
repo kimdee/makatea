@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href ="css/ordering-module.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/7c9f01f1a5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+  <title>Makatea Milktea</title>
+</head>
+
+<body>
+<div class="header">
+  <div class="container">
+      <div class="navbar">
+      <div class="logo">
+        <img src="images/MAKATEA (1).png" class="logo" width="125px">
+      </div> 
+      <nav>
+        <ul id ="MenuItems">
+          <div style="font-size: 15px;">
+          <li> <a href="ordering-module.html">Home</a></li>
+          <li> <a href="cart.html">My Order</a></li>
+          <li> <a href="#contact">Contact</a></li>
+          <li> <a href="login.html">Logout</a></li>
+          <i class="fas fa-shopping-cart" style=></i>
+        <i class="fas fa-bars" onclick="menutoggle()" style="margin-left: 15px;"></i>
+        </ul>
+         </div> 
+      </nav> 
+      <div class="row">
+      <div class="col-2">
+        <h1>Experience the best and yummiest milk tea you ever had.</h1>
+        </div>
+          <div class="col-2">
+          <img src="images/milktea.png" height="420px" style="margin-left: 250px;" >
+        </div>
+
+    </div>
+  </div>
+</div>
+<!----------------------- featured categories -------------------------------->
+
+  <div class="categories" id="about">
+    <div class="small-container">
+      <h2 style="text-align: center; margin-bottom: 20px;">ABOUT US</h2>
+      <p> Makatea Milktea Dine-in and walk-in customers are the usual way transaction of  the shop. They offered many menu options and provided customers with a variety of selections. The client also accepts reservations for various events, and all transactions are conducted over the phone. 
+
+ 
+
+        The main transactions of the client's business are reservations and ordering services. They accept reservations for various events, particularly meetings. They have walk-in and dine-in ordering services for orders, and a cash-on-delivery service will be assigned to their services using our project.  
+        
+         
+        
+        These are the issues that the client's business faces: the number of people who know   their physical store; they do not really accommodate customers who are not physically present in their cafe to order; they only use phone conversations for reservations; and they do not have enough ability to collect feedback from customers on their products and services. </p>
+      <div class="row">
+       <div class="col-3">
+        <img src="images/category-1.jpg" width="100px">
+       </div>
+       <div class="col-3">
+        <img src="images/category-2.jpg" width="100px">
+       </div>
+        <div class="col-3">
+          <img src="images/category-3.jpg" width="100px">
+       </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRODUCTS -->
+ 
+<div class="small-container">
+    <h2 style ="text-align: center;"> MAKATEA PRODUCTS</h2>
+  <div class="row">
+
+          <div class="col-3">
+            <img src="images/product-2.jpg">
+              <h5 class="productname">Summer lacocha</h5>
+              <p>100.00PHP</p>
+              <button type='button'>Add to cart</button>
+          </div>
+
+          <div class="col-3">
+            <img src="images/product-3.jpg">
+            <h5 class="productname">Coffee cream</h5>
+            <p>100.00PHP</p>
+            <button type='button'>Add to cart</button>
+          </div>
+
+            <div class="col-3">
+              <img src="images/product-4.jpg" >
+              <h5 class="productname">Coffee caramel</h5>
+              <p>90.00PHP</p>
+              <button type='button'>Add to cart</button>
+          </div>
+
+          <div class="col-3">
+            <img src="images/product-5.jpg">
+            <h5 class="productname">Loaded Chocolate</h5>
+            <p>130.00PHP</p>
+            <button type='button'>Add to cart</button>
+          </div>
+
+          <div class="col-3">
+            <img src="images/product-6.jpg">
+            <h5 class="productname">Ice cream Choco</h5>
+            <p>100.00PHP</p>
+            <button type='button'>Add to cart</button>
+          </div>
+
+          <div class="col-3">
+            <img src="images/product-7.jpg">
+            <h5 class="productname">Milky way</h5>
+            <p>90.00PHP</p>
+            <button type='button'>Add to cart</button>
+          </div>
+  </div>
+ </div>
+ 
+  <!------------------Footer-------------------->
+  <div class="footer" id="contact">
+    <div class="small-container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h2>Follow us on:</h2>
+          <div class="Row g-1">
+            <div class="col-md-6">
+              <ul>
+                Facebook <i class="fab fa-facebook"></i> &nbsp;
+                instagram <i class="fab fa-instagram-square"></i> &nbsp;
+                Twitter <i class="fab fa-twitter-square"></i>  &nbsp;
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul>
+                <i class="fas fa-phone-alt">09457698770</i>  
+                <i class="fas fa-envelope">MilkteaMakatea26@gmail.com</i>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD TO CART  -->
+
+
+  
+  <!---------------js for toggle menu------------------->
+  <script>
+    var MenuItems = document.getElementById("MenuItems  ");
+
+    MenuItems.style.maxHeight ="0px";
+
+    function menutoggle()
+    if (MenuItems.style.maxHeight == "0px")
+    {
+      MenuItems.style.maxHeight = "200px"
+    }
+    else
+    {
+      MenuItems.style.maxHeight = "0px";
+    }
+  </script> 
+</body>
+</html> 
